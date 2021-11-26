@@ -32,15 +32,16 @@ const App = (props)=>{
 
   }
 
-
-  
-
   const deleteAllEvent=(e)=>{
     e.preventDefault();
-    let action={
-      type:"DELETE_ALL_EVENT"
+    const result = window.confirm('すべてのイベントを本当に削除してもよろしいでしょうか')
+    if (result){
+      let action={
+        type:"DELETE_ALL_EVENT"
+      }
+      dispatch(action);
     }
-    dispatch(action);
+
   }
   
 
@@ -57,11 +58,16 @@ const App = (props)=>{
         <div className="form-group">
           <label htmlFor="formEventBody">ボディー</label>
           <textarea className="form-control" id="formEventBody" value={body} onChange={(e)=>setBody(e.target.value)}/>
-
         </div>
 
-        <button className="btn btn-primary" onClick={addEvent}>イベント作成</button>
-        <button className="btn btn-danger" onClick={deleteAllEvent}>すべてのイベント削除</button>
+        <button className="btn btn-primary" onClick={addEvent} disabled={!title||!body}>
+          イベント作成
+        </button>
+
+        <button className="btn btn-danger" onClick={deleteAllEvent} disabled={state.length===0}>
+          すべてのイベント削除
+        </button>
+
         {/* <button className="btn btn-danger">すべての操作ログの削除</button> */}
 
       </form>
