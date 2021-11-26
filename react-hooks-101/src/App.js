@@ -1,31 +1,32 @@
 import React,{useState} from 'react';
 
 
-const App = ()=>{
-  const [count,setCount] = useState(1);
 
-  const calc = ()=>{
-    setCount((pre)=>{
-      return pre*2
-    })
-  }
 
-  const mod_three = ()=>{
-    setCount((pre)=>{
-      return (pre%3===0 ? pre/3 : pre)
-    })
-  }
+const App = (props)=>{
+
+  const [name,setName] = useState(props.name);
+  const [price,setPrice] = useState(props.price)
   
   return (
-    <div>
-      <p>count:{count}</p>
-      <button onClick={()=>setCount(count+1)}>+1</button>
-      <button onClick={()=>setCount(count-1)}>-1</button>
-      <button onClick={calc}>*2</button>
-      <button onClick={()=>setCount(0)}>reset</button>
-      <button onClick={mod_three}>3の倍数の時だけ3で割る</button>
-    </div>
+    <>
+      <p>現在の{name}は、{price}円です</p>
+      <button onClick={()=>{setPrice(price+1)}}>+1</button>
+      <button onClick={()=>{setPrice(price-1)}}>-1</button>
+      <button onClick={()=>{setPrice(props.price);setName(props.name)}}>reset</button>
+
+      <input value={name} onChange={(e)=>{setName(e.target.value)}} />
+
+    </>
   );
 }
+
+
+App.defaultProps= {
+  name:'sample',
+  price:1000,
+}
+
+
 
 export default App;
