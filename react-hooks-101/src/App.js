@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = (props)=>{
@@ -15,15 +15,44 @@ const App = (props)=>{
 
   
   return (
-    <>
-      <p>現在の{name}は、{price}円です </p>
-      <button onClick={()=>{setState({...state,price:price+1})}}>+1</button>
-      <button onClick={()=>{setState({...state,price:price-1})}}>-1</button>
-      <button onClick={()=>setState(props)}>reset</button>
+    <div className="container-fluid">
+      <h4>イベント作成フォーム</h4>
+      <form>
+        <div className="form-group">
+          <label htmlFor="formEventTitle">タイトル</label>
+          <input className="form-control" id="formEventTitle" />
+        </div>
 
-      <input value={name} onChange={(e)=>{setState({...state,name:e.target.value})}} />
+        <div className="form-group">
+          <label htmlFor="formEventBody">ボディー</label>
+          <textarea className="form-control" id="formEventBody" />
 
-    </>
+        </div>
+
+        <button className="btn btn-primary">イベント作成</button>
+        <button className="btn btn-danger">すべてのイベント削除</button>
+        <button className="btn btn-danger">すべての操作ログの削除</button>
+
+      </form>
+
+      <h4>イベント一覧</h4>
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>タイトル</th>
+            <th>ボディー</th>
+            <th></th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+          
+        </tbody>
+
+      </table>
+    </div>
   );
 }
 
