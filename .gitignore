@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/react-hooks-101/node_modules
+/react-hooks-101/.pnp
+/react-hooks-101.pnp.js
+
+# testing
+/react-hooks-101/coverage
+
+# production
+/react-hooks-101/build
+
+# misc
+/react-hooks-101.DS_Store
+/react-hooks-101.env.local
+/react-hooks-101.env.development.local
+/react-hooks-101.env.test.local
+/react-hooks-101.env.production.local
+
+/react-hooks-101npm-debug.log*
+/react-hooks-101yarn-debug.log*
+/react-hooks-101yarn-error.log*
