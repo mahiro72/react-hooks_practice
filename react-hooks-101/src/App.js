@@ -4,6 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import reducer from './reducers'
 
+import Event from './components/Event';
+
+
 const App = (props)=>{
 
   const [state,dispatch] = useReducer(reducer,[])
@@ -29,7 +32,17 @@ const App = (props)=>{
 
   }
 
-  console.log(state)
+
+  
+
+  const deleteAllEvent=(e)=>{
+    e.preventDefault();
+    let action={
+      type:"DELETE_ALL_EVENT"
+    }
+    dispatch(action);
+  }
+  
 
   
   return (
@@ -48,7 +61,7 @@ const App = (props)=>{
         </div>
 
         <button className="btn btn-primary" onClick={addEvent}>イベント作成</button>
-        <button className="btn btn-danger">すべてのイベント削除</button>
+        <button className="btn btn-danger" onClick={deleteAllEvent}>すべてのイベント削除</button>
         {/* <button className="btn btn-danger">すべての操作ログの削除</button> */}
 
       </form>
@@ -66,7 +79,9 @@ const App = (props)=>{
         </thead>
 
         <tbody>
-
+          {state.map((data,index)=>
+            (<Event data={data} index={index} dispatch={dispatch} />)
+          )}
         </tbody>
 
       </table>
@@ -75,10 +90,10 @@ const App = (props)=>{
 }
 
 
-App.defaultProps= {
-  name:'sample',
-  price:1000,
-}
+// App.defaultProps= {
+//   name:'sample',
+//   price:1000,
+// }
 
 
 
