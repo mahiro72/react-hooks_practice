@@ -1,17 +1,35 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useReducer} from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import reducer from './reducers'
 
 const App = (props)=>{
 
-  const [state,setState] = useState(props);
+  const [state,dispatch] = useReducer(reducer,[])
 
-  const {name,price} = state
+  const [title,setTitle] = useState('')
+  const [body,setBody] = useState('')
 
   useEffect(()=>{
     console.log('useEffect is invoked.')
   },[])
+
+  const addEvent=(e)=>{
+    e.preventDefault();
+    let action ={
+      type:"CREATE_EVENT",
+      title:title,
+      body:body,
+    }
+    dispatch(action)
+
+    setTitle('');
+    setBody('');
+
+  }
+
+  console.log(state)
 
   
   return (
@@ -20,18 +38,18 @@ const App = (props)=>{
       <form>
         <div className="form-group">
           <label htmlFor="formEventTitle">タイトル</label>
-          <input className="form-control" id="formEventTitle" />
+          <input className="form-control" id="formEventTitle" value={title} onChange={(e)=>setTitle(e.target.value)}/>
         </div>
 
         <div className="form-group">
           <label htmlFor="formEventBody">ボディー</label>
-          <textarea className="form-control" id="formEventBody" />
+          <textarea className="form-control" id="formEventBody" value={body} onChange={(e)=>setBody(e.target.value)}/>
 
         </div>
 
-        <button className="btn btn-primary">イベント作成</button>
+        <button className="btn btn-primary" onClick={addEvent}>イベント作成</button>
         <button className="btn btn-danger">すべてのイベント削除</button>
-        <button className="btn btn-danger">すべての操作ログの削除</button>
+        {/* <button className="btn btn-danger">すべての操作ログの削除</button> */}
 
       </form>
 
@@ -48,7 +66,7 @@ const App = (props)=>{
         </thead>
 
         <tbody>
-          
+
         </tbody>
 
       </table>
