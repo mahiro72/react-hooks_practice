@@ -1,6 +1,6 @@
 
 
-const events = (state=[],action)=>{
+const reducer = (state=[],action)=>{
     switch(action.type){
         case "CREATE_EVENT":
             const event = {
@@ -10,6 +10,7 @@ const events = (state=[],action)=>{
             const length = state.length;
             let id = length===0 ? 1 : state[length-1].id+1
             return [...state,{id:id,...event}]
+            
 
         case "DELETE_EVENT":
             return (state.filter((data)=>data.id!==action.id))
@@ -21,5 +22,5 @@ const events = (state=[],action)=>{
     }
 }
 
-export default events;
+export default reducer;
 
