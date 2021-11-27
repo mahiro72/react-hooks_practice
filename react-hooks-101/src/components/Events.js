@@ -4,8 +4,9 @@ import Event from './Event';
 import AppContext from '../contexts/AppContext';
 
 
-const Events = ({state,dispatch}) => {
-    const value = useContext(AppContext);
+const Events = () => {
+    const {state} = useContext(AppContext);
+
     return (
         <>
             
@@ -23,7 +24,7 @@ const Events = ({state,dispatch}) => {
 
                     <tbody>
                     {state.map((data,index)=>
-                        (<Event data={data} index={index} dispatch={dispatch} />)
+                        (<Event data={data} key={index} />)
                     )}
                     </tbody>
 

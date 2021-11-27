@@ -1,7 +1,9 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { DELETE_EVENT } from '../actions'
+import AppContext from '../contexts/AppContext'
 
-const Event = ({index,dispatch,data}) => {
+const Event = ({data}) => {
+    const {dispatch} = useContext(AppContext);
     
     const deleteEvent=()=>{
       const result = window.confirm(`id ${data.id}のイベントを本当に削除してもよろしいでしょうか`)
@@ -15,7 +17,7 @@ const Event = ({index,dispatch,data}) => {
     }
       
     return (
-        <tr key={index}>
+        <tr>
             <td>{data.id}</td>
             <td>{data.title}</td>
             <td>{data.body}</td>
