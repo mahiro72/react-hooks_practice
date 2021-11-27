@@ -11,6 +11,7 @@ const App = (props)=>{
 
   const initialState = {
     events:[],
+    logs:[],
   }
 
   const [state,dispatch] = useReducer(reducer,initialState)
