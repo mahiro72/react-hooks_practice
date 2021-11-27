@@ -1,29 +1,34 @@
-import React from 'react'
+import React,{useContext} from 'react';
 
-import Event from './Event'
+import Event from './Event';
+import AppContext from '../contexts/AppContext';
+
 
 const Events = ({state,dispatch}) => {
+    const value = useContext(AppContext);
     return (
         <>
-            <h4>イベント一覧</h4>
-            <table className="table table-hover">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>タイトル</th>
-                    <th>ボディー</th>
-                    <th></th>
-                </tr>
+            
+                <h4>イベント一覧</h4>
+                <table className="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>タイトル</th>
+                        <th>ボディー</th>
+                        <th></th>
+                    </tr>
 
-                </thead>
+                    </thead>
 
-                <tbody>
-                {state.map((data,index)=>
-                    (<Event data={data} index={index} dispatch={dispatch} />)
-                )}
-                </tbody>
+                    <tbody>
+                    {state.map((data,index)=>
+                        (<Event data={data} index={index} dispatch={dispatch} />)
+                    )}
+                    </tbody>
 
-            </table>
+                </table>
+            
         </>
     )
 }
