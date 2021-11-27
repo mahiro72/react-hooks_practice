@@ -1,26 +1,7 @@
-import { CREATE_EVENT,DELETE_EVENT,DELETE_ALL_EVENT } from "../actions";
 
-const reducer = (state=[],action)=>{
-    switch(action.type){
-        case CREATE_EVENT:
-            const event = {
-                title:action.title,
-                body:action.body
-            };
-            const length = state.length;
-            let id = length===0 ? 1 : state[length-1].id+1
-            return [...state,{id:id,...event}]
-            
+import {combineReducers} from 'redux';
 
-        case DELETE_EVENT:
-            return (state.filter((data)=>data.id!==action.id))
-        case DELETE_ALL_EVENT:
-            return []
+import events from './events';
 
-        default:
-            return state
-    }
-}
-
-export default reducer;
+export default combineReducers({events})
 
