@@ -1,8 +1,8 @@
-
+import { CREATE_EVENT,DELETE_EVENT,DELETE_ALL_EVENT } from "../actions";
 
 const reducer = (state=[],action)=>{
     switch(action.type){
-        case "CREATE_EVENT":
+        case CREATE_EVENT:
             const event = {
                 title:action.title,
                 body:action.body
@@ -12,9 +12,9 @@ const reducer = (state=[],action)=>{
             return [...state,{id:id,...event}]
             
 
-        case "DELETE_EVENT":
+        case DELETE_EVENT:
             return (state.filter((data)=>data.id!==action.id))
-        case "DELETE_ALL_EVENT":
+        case DELETE_ALL_EVENT:
             return []
 
         default:
